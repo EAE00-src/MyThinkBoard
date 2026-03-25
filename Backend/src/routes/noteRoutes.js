@@ -1,4 +1,4 @@
-import express from express;
+import express from "express";
 import { getAllNotes, createNote, updateNote, deleteNote } from "../controllers/noteController.js";
 
 const router = express.Router();
