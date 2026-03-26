@@ -2,11 +2,9 @@ import mongoose from "mongoose"
 
 
 export const connectDB = async () => {
-    try {
+    //the new try-catch in server.js makes former try-catch redundant,
+        // as the error can simply bubble up by itself in server.js where the callback occurs
         await mongoose.connect(process.env.MONGODB_URI);
         console.log(`MongoDB successfully connected! ✅`)
-    } catch (error) {
-        console.error(`Error: ${error.message} ❌`)
-        process.exit(1) //exit(1) means to exit with failure
-    }
+    
 };

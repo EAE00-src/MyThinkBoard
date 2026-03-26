@@ -6,21 +6,34 @@ import cors from "cors"
 
 import notesRoutes from './routes/noteRoutes.js'
 import { connectDB } from "./config/db.js";
+import rateLimiter from "./middleware/rateLimiter.js";
 
 const app = express();
-//port# for access and hardcoded "5001" as fallback
+//port# for access, hardcoded "5001" as fallback
 const port = process.env.PORT || 5001;
-//Database connection 
-connectDB();
-//Middlware
-    //JSON parser middleware
+
+//Middleware
+    //JSON parser: makes json bodies accessible
     app.use(express.json());
+    //RateLimiter: prevents potential spam from bots and potential users
+    app.use(rateLimiter);
     //Cross Origin Resource Sharing
     app.use(cors());
-    //Routes: webapp will utilize the API routes found within routes.js
-    app.use("/api/notes", notesRoutes);
 
-//server opens at localhost port address of 5001 or your choice
-app.listen(port, () => {
-    console.log(`Server running successfully ✅, running on localhost PORT: ${port}`)
-})
+//Routes: webapp will utilize the API routes found within routes.js
+app.use("/api/notes", notesRoutes);
+
+
+try {
+    //Database connection 
+    await connectDB(); //top-level await
+
+    //After a successful database connection, run the server
+    app.listen(port, () => {
+        console.log(`Server running successfully ✅, running on localhost PORT: ${port}`)
+    })
+} catch (error) {
+    //If connection fails, throw the error and exit the process with failure
+    console.error("Database connection failed. Server not started. ❌");
+    process.exit(1);
+}
