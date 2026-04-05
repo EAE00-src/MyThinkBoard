@@ -13,12 +13,13 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 //Middleware
+    //Cross Origin Resource Sharing
+    app.use(cors());
     //JSON parser: makes json bodies accessible
     app.use(express.json());
     //RateLimiter: prevents potential spam from bots and potential users
     app.use(rateLimiter);
-    //Cross Origin Resource Sharing
-    app.use(cors());
+    
 
 //Routes: webapp will utilize the API routes found within routes.js
 app.use("/api/notes", notesRoutes);
