@@ -35,6 +35,6 @@ try {
     })
 } catch (error) {
     //If connection fails, throw the error and exit the process with failure
-    console.error("Database connection failed. Server not started. ❌");
+    console.error(`Database connection failed. Server not started. ❌ ${error}`);
     process.exit(1);
 }

@@ -67,7 +67,7 @@ export const updateNote = async (req, res) => {
 export const deleteNote = async (req, res) => {
 
     try {
-        const {title, content} = req.body;
+        
         const deleteRequest = await Note.findByIdAndDelete(req.params.id);
         //if the Note doesn't exist respond with a 404 error
         if(!deleteRequest) return res.status(404).json({message: "Note not found, can't delete! ❌"})
