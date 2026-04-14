@@ -52,7 +52,10 @@ export const updateNote = async (req, res) => {
     const updatedNote = await Note.findByIdAndUpdate(
         req.params.id, 
         {title, content},
-        {new: true}
+        {
+            returnDocument: 'after',
+            runValidators: true
+        }
     )
     //if the note doesn't exist, return not found status
     if(!updatedNote) return res.status(404).json({message: "Note not found ❌"})

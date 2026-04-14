@@ -62,7 +62,7 @@ const Home = () => {
                     <span className="text-2xl font-bold font-mono tracking-tight">Loading...</span>
                 </div>}
                 {/*If loading state is done and no notes are found while not rate-limited, display the NotesNoteFound component*/}
-                {!loading && notes.length === 0 && !isRateLimited && (<NotesNotFound />)}
+                {(!loading && notes.length === 0) && (!isRateLimited) && (<NotesNotFound />)}
                 {notes.length > 0 && !isRateLimited && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {notes.map((note) => (

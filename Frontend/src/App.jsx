@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Home from "./pages/Home/Home.jsx";
 import CreatePage from "./pages/createNote/createPage.jsx";
 import NotePage from "./pages/Note/NotePage.jsx";
+import NotesError from "./pages/404/404.jsx";
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/create" element={<CreatePage />} />
-          <Route path="/note/:slugs" element={<NotePage />} />
+          <Route path="/notes/:id" element={<NotePage />} />
+          <Route path="/*" element={<NotesError />} />
         </Routes>
         </>
     )
