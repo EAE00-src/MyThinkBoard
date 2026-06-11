@@ -42,7 +42,7 @@ const NoteCard = ({ note, updateNotes }) =>{
                     </span>
                     <div className="flex items-center gap-1">
                         <PenSquareIcon className="size-4" />
-                        <button className="btn btn-ghost btn-xs text-error" onClick={(e) => handleDelete(e, note._id)}>
+                        <button className="btn btn-ghost btn-xs text-error hover:shadow-error/50 shadow-lg" onClick={(e) => handleDelete(e, note._id)}>
                             <Trash2Icon className="size-4" />
                         </button>
 
@@ -54,3 +54,4 @@ const NoteCard = ({ note, updateNotes }) =>{
 }
 
 export default NoteCard;
+
