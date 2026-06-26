@@ -9,6 +9,10 @@ import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
 
 const app = express();
+
+//Trust the first proxy (Render's load balancer) so req.ip (upstash redis ratelimiter's identifier) 
+    // returns the real client IP to avoid ratelimiting every instance globally and instead ratelimiting individually
+    app.set('trust proxy', 1);
 //port# for access, hardcoded "5001" as fallback
 const port = process.env.PORT || 5001;
 
