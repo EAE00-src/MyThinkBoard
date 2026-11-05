@@ -60,6 +60,9 @@ const Home = () => {
                 <div className="flex flex-col items-center justify-center text-center text-info py-10">
                     <FadeLoader color="var(--color-secondary)" /> 
                     <span className="text-2xl font-bold font-mono tracking-tight">Loading...</span>
+                    <span className="text-2xl font-bold font-mono tracking-tight">
+                        Waiting for 5+ seconds? <br /> That means the database is being reactivated. <br /> Your patience is appreciated!
+                    </span>
                 </div>}
                 {/*If loading state is done and no notes are found while not rate-limited, display the NotesNoteFound component*/}
                 {(!loading && notes.length === 0) && (!isRateLimited) && (<NotesNotFound />)}
